@@ -1,17 +1,18 @@
 services:
   redis:
-    image: redis
+    image: redis:7.0.10
   mongo:
-    image: mongo
+    image: mongo:6.0.3
   worker:
     image: proteus/worker
     build:
       context: bin/worker/
     volumes:
-      - /home/op/.axiom/accounts/personal.json:/root/.axiom/accounts/default.json
-      - /home/op/.axiom/modules:/root/.axiom/modules
-      - /home/op/.ssh:/root/.ssh
-      - /home/op/.proteus:/app
+      - /root/.axiom/accounts/aws.json:/root/.axiom/accounts/default.json
+      - /root/.axiom/modules:/root/.axiom/modules
+      - /root/.ssh:/root/.ssh
+      - /root/.proteus:/app
+      - /root/.aws:/root/.aws
     depends_on:
     - redis
     - mongo
