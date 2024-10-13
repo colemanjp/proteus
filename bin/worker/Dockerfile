@@ -10,8 +10,9 @@ RUN apt-get update \
 WORKDIR /root/.axiom
 RUN git clone https://github.com/attacksurge/ax.git /root/.axiom/
 RUN  wget -q -O /tmp/doctl.tar.gz https://github.com/digitalocean/doctl/releases/download/v1.66.0/doctl-1.66.0-linux-amd64.tar.gz && tar -xvzf /tmp/doctl.tar.gz && mv doctl /usr/bin/doctl && rm /tmp/doctl.tar.gz
-RUN interact/axiom-configure --config "{}" --unattended
+RUN interact/axiom-configure --unattended --run
 RUN /usr/local/go/bin/go install -v github.com/projectdiscovery/notify/cmd/notify@latest
+RUN /usr/local/go/bin/go install -v github.com/tomnomnom/anew@latest
 
 RUN git clone https://github.com/colemanjp/proteus.git /app && cd /app 
 RUN pip3 install -r /app/bin/worker/requirements.txt
